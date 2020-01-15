@@ -13,22 +13,38 @@
 # include "gui/event_manager.hpp"
 # include "display.hpp"
 #include <chrono>
-#include <mpi.h>
+#include <omp.h>
+#include <fstream>
+#include <cstdlib> 
 
 void advance_time( const labyrinthe& land, pheronome& phen, 
                    const position_t& pos_nest, const position_t& pos_food,
                    std::vector<ant>& ants, std::size_t& cpteur )
 {
     std::chrono::time_point<std::chrono::system_clock> start, end;
+
     start = std::chrono::system_clock::now();
 
-    #pragma omp parallel for reduction(+:cpteur)
-    for ( size_t i = 0; i < ants.size(); ++i )
-        ants[i].advance(phen, land, pos_food, pos_nest, cpteur);
-    end = std::chrono::system_clock::now();
-    std::chrono::duration<double> duration = end - start;
-    std::cout << "Advance: " << duration.count() << std::endl;
+    #pragma omp parallel reduction(+:cpteur)
+    {
+        if (omp_get_thread_num() != 0){
+            int num = omp_get_thread_num() - 1;
+            int block = ants.size() / (omp_get_num_threads() - 1);
+
+            int startPart = num * block;
+            int endPart = startPart + block;
+            for ( size_t i = startPart; i < endPart; ++i )
+                ants[i].advance(phen, land, pos_food, pos_nest, cpteur);
+
+            end = std::chrono::system_clock::now();
+            std::chrono::duration<double> duration = end - start;
+            std::cout << "Advance: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
+        }
+        
+    }
+
     phen.do_evaporation();
+    
     phen.update();
 }
 
@@ -42,16 +58,6 @@ int main(int nargs, char* argv[])
     const double alpha=0.97; // Coefficient de chaos
     //const double beta=0.9999; // Coefficient d'évaporation
     const double beta=0.999; // Coefficient d'évaporation
-                             // 
-    int rank, state;
-    // Initialisation de MPI
-    MPI_Init (&nargs , &argv);
-
-    // Lit le nombre de tâches
-    MPI_Comm_size (MPI_COMM_WORLD , &state);
-
-    // Lit mon rang
-    MPI_Comm_rank (MPI_COMM_WORLD , &rank);
 
     labyrinthe laby(dims);
     // Location du nid
@@ -59,7 +65,8 @@ int main(int nargs, char* argv[])
     // Location de la nourriture
     position_t pos_food{dims.first-1,dims.second-1};
                           
-    
+    std::chrono::time_point<std::chrono::system_clock> victStart, victSEnd;
+    victStart = std::chrono::system_clock::now();
     // Définition du coefficient d'exploration de toutes les fourmis.
     ant::set_exploration_coef(eps);
     // On va créer toutes les fourmis dans le nid :
@@ -81,16 +88,38 @@ int main(int nargs, char* argv[])
     manager.on_key_event(int('q'), [] (int code) { exit(0); });
     manager.on_display([&] { displayer.display(food_quantity); win.blit(); });
     manager.on_idle([&] () { 
-        std::chrono::time_point<std::chrono::system_clock> start, end;
+        
         advance_time(laby, phen, pos_nest, pos_food, ants, food_quantity);
-        start = std::chrono::system_clock::now();
-        displayer.display(food_quantity); 
-        end = std::chrono::system_clock::now();
-        std::chrono::duration<double> duration = end - start;
-        std::cout << "Display: " << duration.count() << std::endl;
+        #pragma omp master
+        {
+            
+            std::chrono::time_point<std::chrono::system_clock> start, end;
+            //Start le counter pour le display
+            start = std::chrono::system_clock::now();
+            
+            displayer.display(food_quantity); 
+
+            //Duration
+            end = std::chrono::system_clock::now();
+            std::chrono::duration<double> duration = end - start;
+            std::cout << "Display: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
+
+            if (food_quantity >= 1000){
+                victSEnd = std::chrono::system_clock::now();
+                std::chrono::duration<double> duration = victSEnd - victStart;
+                std::ofstream outfile ("saida.txt");
+
+                outfile << "Victoire: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
+
+                outfile.close();
+            }
+                      
+        }
+
+        
         win.blit(); 
     });
     manager.loop();
 
-    return MPI_SUCCESS;
+    return 0;
 }
