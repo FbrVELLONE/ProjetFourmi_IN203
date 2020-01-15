@@ -1,0 +1,50 @@
+Determining if files usbhid.h exist failed with the following output:
+Change Dir: /home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_00701/fast"
+make[2]: Entering directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_00701.dir/build.make CMakeFiles/cmTC_00701.dir/build
+make[3]: Entering directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_00701.dir/CheckIncludeFiles.c.o
+/usr/bin/cc   -Wall -pedantic    -o CMakeFiles/cmTC_00701.dir/CheckIncludeFiles.c.o   -c /home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:10: fatal error: usbhid.h: Arquivo ou diretório inexistente
+ #include <usbhid.h>
+          ^~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_00701.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_00701.dir/CheckIncludeFiles.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_00701.dir/CheckIncludeFiles.c.o] Error 1
+make[3]: Leaving directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_00701/fast' failed
+make[2]: *** [cmTC_00701/fast] Error 2
+make[2]: Leaving directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+
+Source:
+/* */
+#include <usbhid.h>
+
+
+int main(void){return 0;}
+
+Determining if the function XParseGeometry exists failed with the following output:
+Change Dir: /home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2e29a/fast"
+make[2]: Entering directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2e29a.dir/build.make CMakeFiles/cmTC_2e29a.dir/build
+make[3]: Entering directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2e29a.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -Wall -pedantic -DCHECK_FUNCTION_EXISTS=XParseGeometry   -o CMakeFiles/cmTC_2e29a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2e29a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2e29a.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -pedantic -DCHECK_FUNCTION_EXISTS=XParseGeometry    -rdynamic CMakeFiles/cmTC_2e29a.dir/CheckFunctionExists.c.o  -o cmTC_2e29a -lm 
+CMakeFiles/cmTC_2e29a.dir/CheckFunctionExists.c.o: Na função "main":
+CheckFunctionExists.c:(.text+0x10): referência não definida para "XParseGeometry"
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_2e29a.dir/build.make:97: recipe for target 'cmTC_2e29a' failed
+make[3]: *** [cmTC_2e29a] Error 1
+make[3]: Leaving directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2e29a/fast' failed
+make[2]: *** [cmTC_2e29a/fast] Error 2
+make[2]: Leaving directory '/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/CMakeFiles/CMakeTmp'
+
+

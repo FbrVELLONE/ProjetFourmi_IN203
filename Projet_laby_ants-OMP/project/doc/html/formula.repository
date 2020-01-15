@@ -1,0 +1,5 @@
+\form#0:$nbSeeds*2^{log\_size}+1$
+\form#1:$2^{log\_size}$
+\form#2:$Ib*2^{log\_size}$
+\form#3:$Jb*2^{log\_size}$
+\form#4:$2^{n-1}$
