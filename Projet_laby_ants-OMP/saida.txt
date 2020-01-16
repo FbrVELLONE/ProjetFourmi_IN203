@@ -1,1 +1,5 @@
 Victoire seq: 36.1058
+Victoire seq: 35.9917
+Victoire seq: 36.4346
+Victoire seq: 35.882
+Victoire seq: 36.9828
