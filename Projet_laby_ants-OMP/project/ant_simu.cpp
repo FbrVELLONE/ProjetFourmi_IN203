@@ -51,7 +51,10 @@ void advance_time( const labyrinthe& land, pheronome& phen,
 
 int main(int nargs, char* argv[])
 {
-    
+        //Set number os threads
+    omp_set_dynamic(0);     // Explicitly disable dynamic teams
+    omp_set_num_threads(2);
+
     const dimension_t dims{32, 64};// Dimension du labyrinthe
     const std::size_t life = int(dims.first*dims.second);
     const int nb_ants = 2*dims.first*dims.second; // Nombre de fourmis
