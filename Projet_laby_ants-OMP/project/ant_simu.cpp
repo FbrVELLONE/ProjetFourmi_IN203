@@ -76,7 +76,7 @@ int main(int nargs, char* argv[])
             outfile << "Victoire seq: " << duration.count() << std::endl;
 
             outfile.close();
-            victoire = false;;
+            victoire = false;
         }
 
     });
