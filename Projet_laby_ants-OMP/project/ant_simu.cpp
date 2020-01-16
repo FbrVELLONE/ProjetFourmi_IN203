@@ -43,7 +43,7 @@ void advance_time( const labyrinthe& land, pheronome& phen,
 
 int main(int nargs, char* argv[])
 {
-    
+    bool victoire = true;
     const dimension_t dims{32, 64};// Dimension du labyrinthe
     const std::size_t life = int(dims.first*dims.second);
     const int nb_ants = 2*dims.first*dims.second; // Nombre de fourmis
@@ -117,14 +117,15 @@ int main(int nargs, char* argv[])
             std::chrono::duration<double> duration = end - start;
             std::cout << "Display: " << duration.count() << ", thread:" << rank << std::endl;
 
-            if (food_quantity >= 5000){
+            if (food_quantity >= 5000 && victoire){
                 victEnd = std::chrono::system_clock::now();
                 std::chrono::duration<double> duration = victEnd - victStart;
-                std::ofstream outfile ("saida.txt");
+                std::ofstream outfile ("saida.txt", std::ios::app);
 
-                outfile << "Victoire: " << duration.count() << ", thread:" << rank << std::endl;
+                outfile << "Victoire mpi+omp: " << duration.count() << ", thread:" << rank << std::endl;
 
                 outfile.close();
+                victoire = false;
             }
 
             win.blit(); 
