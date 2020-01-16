@@ -8,3 +8,4 @@ Victoire omp: 33.4431, thread:0
 Victoire omp: 33.6786, thread:0
 Victoire omp: 33.5039, thread:0
 Victoire omp: 33.4686, thread:0
+Victoire omp: 20.0838, thread:0
