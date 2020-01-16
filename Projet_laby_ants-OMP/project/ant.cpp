@@ -30,7 +30,7 @@ void ant::advance( pheronome& phen, const labyrinthe& laby, const position_t& po
             m_path_to_nest.emplace_back(pos_nest);
             return;
         }
-        double     choix       = ant_choice( gen );  // Le choix entre exploration ou suivre des phéronomes :
+       double     choix       = ant_choice( gen );  // Le choix entre exploration ou suivre des phéronomes :
         position_t old_pos_ant = get_position( );
         position_t new_pos_ant = old_pos_ant;
         // Calcul des phéronomes adjacents en tenant compte des ouvertures du labyrinthe

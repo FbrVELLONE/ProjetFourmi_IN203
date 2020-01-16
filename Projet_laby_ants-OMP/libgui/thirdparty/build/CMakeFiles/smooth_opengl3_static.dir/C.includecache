@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut.h
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut.h
 freeglut_std.h
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_std.h
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_std.h
 freeglut_ext.h
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_ext.h
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_ext.h
 
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_ext.h
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_ext.h
 stdarg.h
 -
 
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_std.h
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/include/GL/freeglut_std.h
 windows.h
 -
 EGL/egl.h
@@ -36,7 +36,7 @@ GL/glu.h
 stdlib.h
 -
 
-/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/progs/demos/smooth_opengl3/smooth_opengl3.c
+/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/freeglut-3.0.0/progs/demos/smooth_opengl3/smooth_opengl3.c
 GL/freeglut.h
 -
 stdlib.h

@@ -1,5 +1,5 @@
-prefix=/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/../../..
-libdir=/home/vellone/ENSTA/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/../../../lib
+prefix=/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/../../..
+libdir=/media/david/Hard_Disk/ENSTA/ANNEE_2/IN203/Promotion_2021/TravauxPratiques/Projet/Projet_laby_ants/libgui/thirdparty/build/../../../lib
 includedir=${prefix}/include
 
 Name: glut

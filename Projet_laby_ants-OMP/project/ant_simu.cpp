@@ -1,4 +1,3 @@
- 
 #include <vector>
 #include <iostream>
 #include <random>
@@ -14,7 +13,7 @@
 # include "gui/quad.hpp"
 # include "gui/event_manager.hpp"
 # include "display.hpp"
-
+#include <fstream>
 void advance_time( const labyrinthe& land, pheronome& phen, 
                    const position_t& pos_nest, const position_t& pos_food,
                    std::vector<ant>& ants, std::size_t& cpteur )
@@ -27,6 +26,9 @@ void advance_time( const labyrinthe& land, pheronome& phen,
 
 int main(int nargs, char* argv[])
 {
+    bool victoire = true;
+    std::chrono::time_point<std::chrono::system_clock> victStart, victSEnd;
+    victStart = std::chrono::system_clock::now();
 
     const dimension_t dims{32, 64};// Dimension du labyrinthe
     const std::size_t life = int(dims.first*dims.second);
@@ -65,6 +67,18 @@ int main(int nargs, char* argv[])
         advance_time(laby, phen, pos_nest, pos_food, ants, food_quantity);
         displayer.display(food_quantity); 
         win.blit(); 
+
+        if (food_quantity >= 5000 && victoire){
+            victSEnd = std::chrono::system_clock::now();
+            std::chrono::duration<double> duration = victSEnd - victStart;
+            std::ofstream outfile ("saida.txt", std::ios::app	);
+
+            outfile << "Victoire seq: " << duration.count() << std::endl;
+
+            outfile.close();
+            victoire = false;;
+        }
+
     });
     manager.loop();
 

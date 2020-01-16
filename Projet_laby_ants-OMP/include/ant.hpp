@@ -29,9 +29,7 @@ public:
 
     void advance( pheronome& phen, const labyrinthe& land,
                   const position_t& pos_food, const position_t& pos_nest, std::size_t& cpteur_food );
-    void set_position(position_t new_position) {
-        m_path_to_nest.back() = new_position;
-    }
+
 private:
     static double m_eps; // Coefficient d'exploration commun à toutes les fourmis.
     state m_state;

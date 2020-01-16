@@ -7,7 +7,6 @@
 #include "gui/segment.hpp"
 #include "gui/triangle.hpp"
 #include "basic_types.hpp"
-#include <omp.h>
 
 const double h = h_scal;
 
@@ -60,7 +59,6 @@ void display_t::display( const std::size_t& compteur ) {
     // Affichage des phéronomes dans le cadran en haut à droite :
     std::vector< gui::quad > m_p_phen;
     m_p_phen.reserve( m_ref_laby.dimensions( ).first * m_ref_laby.dimensions( ).second+1 );
-    
     for ( std::size_t i = 0; i < m_ref_laby.dimensions( ).first; ++i )
         for ( std::size_t j = 0; j < m_ref_laby.dimensions( ).second; ++j ) {
             m_p_phen.emplace_back(

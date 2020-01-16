@@ -1,1 +1,1 @@
-Victoire: 18.5191, thread:0
+Victoire seq: 36.1058
