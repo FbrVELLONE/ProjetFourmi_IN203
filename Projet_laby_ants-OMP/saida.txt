@@ -1,1 +1,5 @@
-Victoire: 18.5191, thread:0
+Victoire mpi: 25.3449, thread:0
+Victoire mpi: 25.3535, thread:0
+Victoire mpi: 24.4564, thread:0
+Victoire mpi: 24.3954, thread:0
+Victoire mpi: 24.0601, thread:0
