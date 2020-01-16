@@ -100,10 +100,15 @@ public:
 
     void update( ) {
         m_map_of_pheronome.swap( m_buffer_pheronome );
-	std::copy(m_map_of_pheronome.begin(), m_map_of_pheronome.end(),
-		  m_buffer_pheronome.begin());
+	        std::copy(m_map_of_pheronome.begin(), m_map_of_pheronome.end(),
+		        m_buffer_pheronome.begin());
         m_map_of_pheronome[m_pos_food.first * m_stride + m_pos_food.second] = 1;
     }
+
+    void copy(const std::vector<pheronome_t> m_buffer) {
+        std::copy(m_buffer.begin(), m_buffer.end(), m_map_of_pheronome.begin());
+    }
+
 
 private:
     size_t index( const position_t& pos ) const {
