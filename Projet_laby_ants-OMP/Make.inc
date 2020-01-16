@@ -3,12 +3,12 @@
 # DIRECTORY OU EST INSTALLE LE PROJET :
 PROJECT_ROOT = /home/vellone/ENSTA/IN203/Projetos/Projet_laby_ants-OMP
 # Compilateur utilise
-CXX = mpiCC
+CXX = g++
 # Options pour le debogage et l'optimisation
 DEBUGOPT = -g -Wall -pedantic -fopenmp -D_GLIBCXX_DEBUG_PEDANTIC
 OPTIMOPT = -O2 -march=native -fopenmp
 # Parametres passes au compîlateur
-CXXOPT = -std=c++11 -fPIC $(OPTIMOPT)
+CXXOPT = -std=c++11 -fPIC $(DEBUGOPT)
 
 # Ou est installe MPI ( utile que si on utilise autre chose qu'OpenMPI )
 MPIROOT    = /usr/lib/openmpi

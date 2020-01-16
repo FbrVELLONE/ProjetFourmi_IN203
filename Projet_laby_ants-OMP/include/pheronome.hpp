@@ -90,27 +90,17 @@ public:
         double             v1_right    = std::max( right_cell, 0. );
         double             v1_upper    = std::max( upper_cell, 0. );
         double             v1_bottom   = std::max( bottom_cell, 0. );
-
-        #pragma omp critical 
-        {
-            m_buffer_pheronome[i*m_stride + j] =
+        m_buffer_pheronome[i*m_stride + j] =
             m_alpha * std::max( {v1_left, v1_right, v1_upper, v1_bottom} ) +
             ( 1 - m_alpha ) * 0.25 * ( v1_left + v1_right + v1_upper + v1_bottom );
-        }
-    
     }
 
     void update( ) {
         m_map_of_pheronome.swap( m_buffer_pheronome );
-	        std::copy(m_map_of_pheronome.begin(), m_map_of_pheronome.end(),
-		        m_buffer_pheronome.begin());
+	std::copy(m_map_of_pheronome.begin(), m_map_of_pheronome.end(),
+		  m_buffer_pheronome.begin());
         m_map_of_pheronome[m_pos_food.first * m_stride + m_pos_food.second] = 1;
     }
-
-    void copy(const std::vector<pheronome_t> m_buffer) {
-        std::copy(m_buffer.begin(), m_buffer.end(), m_map_of_pheronome.begin());
-    }
-
 
 private:
     size_t index( const position_t& pos ) const {
