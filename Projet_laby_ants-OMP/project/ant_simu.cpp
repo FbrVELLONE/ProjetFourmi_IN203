@@ -51,9 +51,10 @@ void advance_time( const labyrinthe& land, pheronome& phen,
 
 int main(int nargs, char* argv[])
 {
+    bool victoire = true;
         //Set number os threads
     omp_set_dynamic(0);     // Explicitly disable dynamic teams
-    omp_set_num_threads(2);
+    omp_set_num_threads(12);
 
     const dimension_t dims{32, 64};// Dimension du labyrinthe
     const std::size_t life = int(dims.first*dims.second);
@@ -108,14 +109,15 @@ int main(int nargs, char* argv[])
             std::chrono::duration<double> duration = end - start;
             std::cout << "Display: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
 
-            if (food_quantity >= 1000){
+            if (food_quantity >= 5000 && victoire){
                 victSEnd = std::chrono::system_clock::now();
                 std::chrono::duration<double> duration = victSEnd - victStart;
-                std::ofstream outfile ("saida.txt");
+                std::ofstream outfile ("saida.txt", std::ios::app);
 
-                outfile << "Victoire: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
+                outfile << "Victoire omp: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
 
                 outfile.close();
+                victoire = false;
             }
                       
         }

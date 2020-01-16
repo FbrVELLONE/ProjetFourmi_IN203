@@ -1,1 +1,5 @@
-Victoire: 36.6282, thread:0
+Victoire omp: 24.1955, thread:0
+Victoire omp: 23.9356, thread:0
+Victoire omp: 23.9572, thread:0
+Victoire omp: 24.2158, thread:0
+Victoire omp: 24.6834, thread:0
