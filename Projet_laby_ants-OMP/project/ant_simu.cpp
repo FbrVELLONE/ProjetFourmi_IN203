@@ -21,23 +21,24 @@ void advance_time( const labyrinthe& land, pheronome& phen,
                    const position_t& pos_nest, const position_t& pos_food,
                    std::vector<ant>& ants, std::size_t& cpteur )
 {
-    std::chrono::time_point<std::chrono::system_clock> start, end;
-
-    start = std::chrono::system_clock::now();
+        //Horloge adv
+    std::chrono::time_point<std::chrono::system_clock> startAdv, endAdv;
+    startAdv = std::chrono::system_clock::now();
 
     #pragma omp parallel reduction(+:cpteur)
-    {
+    {   
+            //for pour toutes les threads except le principal
         if (omp_get_thread_num() != 0){
             int num = omp_get_thread_num() - 1;
             int block = ants.size() / (omp_get_num_threads() - 1);
 
-            int startPart = num * block;
-            int endPart = startPart + block;
-            for ( size_t i = startPart; i < endPart; ++i )
+            int Partie = num * block;
+            int endPartie = Partie + block;
+            for ( size_t i = Partie; i < endPartie; ++i )
                 ants[i].advance(phen, land, pos_food, pos_nest, cpteur);
 
-            end = std::chrono::system_clock::now();
-            std::chrono::duration<double> duration = end - start;
+            endAdv = std::chrono::system_clock::now();
+            std::chrono::duration<double> duration = endAdv - startAdv;
             std::cout << "Advance: " << duration.count() << ", thread:" << omp_get_thread_num() << std::endl;
         }
         
@@ -50,7 +51,7 @@ void advance_time( const labyrinthe& land, pheronome& phen,
 
 int main(int nargs, char* argv[])
 {
-
+    
     const dimension_t dims{32, 64};// Dimension du labyrinthe
     const std::size_t life = int(dims.first*dims.second);
     const int nb_ants = 2*dims.first*dims.second; // Nombre de fourmis
