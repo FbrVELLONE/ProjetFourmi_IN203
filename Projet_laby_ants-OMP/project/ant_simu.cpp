@@ -14,6 +14,7 @@
 # include "display.hpp"
 #include <chrono>
 #include <mpi.h>
+#include <omp.h>
 #include <fstream>
 #include <cstdlib> 
 
@@ -25,12 +26,15 @@ void advance_time( const labyrinthe& land, pheronome& phen,
     std::chrono::time_point<std::chrono::system_clock> startAdv, endAdv;
     startAdv = std::chrono::system_clock::now();
 
-    for ( size_t i = 0; i < ants.size(); ++i )
-            ants[i].advance(phen, land, pos_food, pos_nest, cpteur);
+    #pragma omp parallel for reduction(+:cpteur)
+    for ( size_t i = 0; i < ants.size(); ++i ){
+        ants[i].advance(phen, land, pos_food, pos_nest, cpteur);
 
         endAdv = std::chrono::system_clock::now();
         std::chrono::duration<double> duration = endAdv - startAdv;
-        std::cout << "Advance: " << duration.count() <<  std::endl;
+        std::cout << "Advance: " << duration.count() << ", threads: " << omp_get_thread_num() << std::endl;
+    }
+            
 
     phen.do_evaporation();
     
@@ -113,7 +117,7 @@ int main(int nargs, char* argv[])
             std::chrono::duration<double> duration = end - start;
             std::cout << "Display: " << duration.count() << ", thread:" << rank << std::endl;
 
-            if (food_quantity >= 10000){
+            if (food_quantity >= 5000){
                 victEnd = std::chrono::system_clock::now();
                 std::chrono::duration<double> duration = victEnd - victStart;
                 std::ofstream outfile ("saida.txt");
